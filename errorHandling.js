@@ -12,6 +12,19 @@ app.use((err, req, res, next) => {
   res.status(500).send('Something went wrong!')
 })
 
+
+async function getUser() {
+  try {
+    // Attempt the async operation
+    const user = await getUserFromDatabase();
+    console.log("User found:", user);
+  } catch (error) {
+    // If anything fails in the 'try' block, execution jumps here immediately
+    console.error("Failed to fetch user:", error.message);
+  }
+}
 app.listen(3000, () => {
   console.log('Server running on http://localhost:3000')
 })
+
+getUser()
